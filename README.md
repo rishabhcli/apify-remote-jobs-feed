@@ -52,7 +52,33 @@ Example input:
 Example row (real output from a test run, description omitted here for length):
 
 ```json
-EXAMPLE_ROW
+{
+  "id": "jobicy:158260",
+  "source": "jobicy",
+  "sourceUrl": "https://jobicy.com/jobs/158260-full-stack-engineer-ai-platform",
+  "title": "Full-Stack Engineer, AI Platform",
+  "company": "Thumbtack",
+  "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2021/05/Jobicy-210503180426-842530.jpg",
+  "location": "USA",
+  "worldwide": false,
+  "jobTypes": [
+    "full-time"
+  ],
+  "categories": [
+    "Software Engineering"
+  ],
+  "tags": [],
+  "seniority": null,
+  "salaryMin": 151300,
+  "salaryMax": 229900,
+  "salaryCurrency": "USD",
+  "salaryPeriod": "yearly",
+  "salaryText": null,
+  "publishedAt": "2026-10-31T17:05:04.000Z",
+  "alsoListedOn": [],
+  "attribution": "Source: Jobicy (https://jobicy.com). Apply through the Jobicy listing URL.",
+  "scrapedAt": "2026-11-01T02:46:28.116Z"
+}
 ```
 
 Salary notes: Jobicy supplies numeric salary fields. Remotive supplies free text such as `$3.5k-$5k/month`; the Actor parses it on a best-effort basis into `salaryMin`, `salaryMax`, `salaryCurrency`, `salaryPeriod` and always keeps the original in `salaryText`. Check `salaryText` before relying on a parsed Remotive figure.
