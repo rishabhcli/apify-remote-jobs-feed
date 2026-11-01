@@ -1,0 +1,20 @@
+{
+    "actorSpecification": 1,
+    "name": "remote-jobs-feed",
+    "title": "Remote Jobs Feed: Jobicy + Remotive, Filtered and Deduplicated",
+    "description": "Merges the free public remote-job feeds of Jobicy and Remotive into one clean dataset with filters, salary fields and links back to the source listing.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "input": "./input_schema.json",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "minMemoryMbytes": 256,
+    "maxMemoryMbytes": 1024,
+    "environmentVariables": {},
+    "meta": {
+        "templateId": "project_empty"
+    }
+}

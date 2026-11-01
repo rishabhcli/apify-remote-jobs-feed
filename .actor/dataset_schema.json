@@ -1,0 +1,55 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "type": "object",
+        "properties": {
+            "id": { "type": "string", "description": "source:listingId, stable across runs." },
+            "source": { "type": "string", "enum": ["jobicy", "remotive"] },
+            "sourceUrl": { "type": "string", "description": "Listing page on the source. Send applicants here." },
+            "title": { "type": "string" },
+            "company": { "type": "string" },
+            "companyLogo": { "type": ["string", "null"] },
+            "location": { "type": ["string", "null"], "description": "Location restriction text as published." },
+            "worldwide": { "type": "boolean", "description": "True when the posting says anywhere/worldwide." },
+            "jobTypes": { "type": "array", "items": { "type": "string" } },
+            "categories": { "type": "array", "items": { "type": "string" } },
+            "tags": { "type": "array", "items": { "type": "string" } },
+            "seniority": { "type": ["string", "null"] },
+            "salaryMin": { "type": ["number", "null"] },
+            "salaryMax": { "type": ["number", "null"] },
+            "salaryCurrency": { "type": ["string", "null"] },
+            "salaryPeriod": { "type": ["string", "null"], "description": "yearly, monthly, weekly or hourly" },
+            "salaryText": { "type": ["string", "null"], "description": "Original salary text when the source only provides text (Remotive)." },
+            "publishedAt": { "type": ["string", "null"], "description": "ISO 8601 UTC." },
+            "description": { "type": "string", "description": "Plain text or HTML depending on input; absent when omitted." },
+            "attribution": { "type": "string", "description": "Required credit line for the source." },
+            "alsoListedOn": { "type": "array", "items": { "type": "object" }, "description": "Duplicates merged into this row." },
+            "scrapedAt": { "type": "string" }
+        }
+    },
+    "views": {
+        "overview": {
+            "title": "Jobs",
+            "description": "Newest first",
+            "transformation": {
+                "fields": ["title", "company", "location", "jobTypes", "salaryMin", "salaryMax", "salaryCurrency", "salaryPeriod", "publishedAt", "source", "sourceUrl"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "title": { "label": "Title", "format": "text" },
+                    "company": { "label": "Company", "format": "text" },
+                    "location": { "label": "Location", "format": "text" },
+                    "jobTypes": { "label": "Type", "format": "array" },
+                    "salaryMin": { "label": "Salary min", "format": "number" },
+                    "salaryMax": { "label": "Salary max", "format": "number" },
+                    "salaryCurrency": { "label": "Cur.", "format": "text" },
+                    "salaryPeriod": { "label": "Per", "format": "text" },
+                    "publishedAt": { "label": "Posted", "format": "date" },
+                    "source": { "label": "Source", "format": "text" },
+                    "sourceUrl": { "label": "Listing", "format": "link" }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,99 @@
+{
+    "title": "Remote Jobs Feed input",
+    "type": "object",
+    "schemaVersion": 1,
+    "description": "All filters are optional. With no input the Actor returns the 50 newest remote jobs from both sources posted in the last 7 days.",
+    "properties": {
+        "sources": {
+            "title": "Sources",
+            "type": "array",
+            "description": "Which public job feeds to read. Both permit reuse with attribution; every row links back to the listing on its source.",
+            "editor": "select",
+            "items": {
+                "type": "string",
+                "enum": ["jobicy", "remotive"],
+                "enumTitles": ["Jobicy", "Remotive"]
+            },
+            "default": ["jobicy", "remotive"],
+            "prefill": ["jobicy", "remotive"]
+        },
+        "searchTerms": {
+            "title": "Search terms",
+            "type": "array",
+            "description": "Keep jobs whose title, company, tags, category or description contains ANY of these words (case-insensitive). Leave empty for all jobs.",
+            "editor": "stringList",
+            "default": [],
+            "prefill": ["python", "data"]
+        },
+        "excludeTerms": {
+            "title": "Exclude terms",
+            "type": "array",
+            "description": "Drop jobs whose title or company contains ANY of these words.",
+            "editor": "stringList",
+            "default": []
+        },
+        "location": {
+            "title": "Location contains",
+            "type": "string",
+            "description": "Match the location restriction text of the posting, for example USA, Europe, Canada. Use Worldwide to keep only jobs open to applicants anywhere.",
+            "editor": "textfield",
+            "default": ""
+        },
+        "categories": {
+            "title": "Categories contain",
+            "type": "array",
+            "description": "Keep jobs whose category or industry contains ANY of these words, for example engineering, marketing, design.",
+            "editor": "stringList",
+            "default": []
+        },
+        "jobTypes": {
+            "title": "Job types",
+            "type": "array",
+            "description": "Keep only these employment types. Leave empty for all.",
+            "editor": "select",
+            "items": {
+                "type": "string",
+                "enum": ["full-time", "part-time", "contract", "freelance", "internship", "other"],
+                "enumTitles": ["Full-time", "Part-time", "Contract", "Freelance", "Internship", "Other"]
+            },
+            "default": []
+        },
+        "requireSalary": {
+            "title": "Only jobs with a salary",
+            "type": "boolean",
+            "description": "Keep only postings that state a salary or salary range.",
+            "default": false
+        },
+        "postedWithinDays": {
+            "title": "Posted within (days)",
+            "type": "integer",
+            "description": "Ignore older postings. 0 means no limit. Jobicy only serves the last 7 days, so larger values mostly affect Remotive.",
+            "default": 7,
+            "minimum": 0,
+            "maximum": 365
+        },
+        "maxItems": {
+            "title": "Maximum jobs",
+            "type": "integer",
+            "description": "Upper bound on rows saved, and therefore on cost: each saved job is one billable event.",
+            "default": 50,
+            "minimum": 1,
+            "maximum": 1000
+        },
+        "includeDescription": {
+            "title": "Description format",
+            "type": "string",
+            "description": "Full job description as plain text, original HTML, or omitted to keep rows small.",
+            "editor": "select",
+            "enum": ["text", "html", "none"],
+            "enumTitles": ["Plain text", "HTML", "Omit"],
+            "default": "text"
+        },
+        "dedupe": {
+            "title": "Merge duplicates",
+            "type": "boolean",
+            "description": "When the same company posts the same title on both sources, keep one row and list the other link under alsoListedOn.",
+            "default": true
+        }
+    }
+}
